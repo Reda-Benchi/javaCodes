@@ -14,7 +14,7 @@ class Celle {
 		antLevendeNaboer = 0;
 	}
 	
-	public void settDoed () {		// instansvariabel levende deklareres til false
+	public void settDoed () {		//instansvariabel levende deklareres til false
 		levende = false;		// altså (død)
 	}
 
@@ -54,21 +54,21 @@ class Celle {
 	}
 
 	public void oppdaterStatus () {
-		tellLevendeNaboer();		// nullstiller og teller naboceller
-
-						// naboceller antall er lik 2 eller 3 lar
-						// cellen fortsette å leve
-		if (antLevendeNaboer== 2 || antLevendeNaboer== 3) {
-			levende = levende;
+			if (levende) {			
+				if (antLevendeNaboer < 2) { // cellen dør hvis naboer < 2
+					settDoed();	   // oppfylles
+			}
+				
+	 // Siden cellen er levende kan vi sett bortifra hva antLevendeNaboer = 2 eller 3
+	
+						  // flere enn 3 naboer dreper cellen
+			else if (antLevendeNaboer > 3) {									settDoed();
+			}
 		}
-		if (antLevendeNaboer > 3) {	// flere enn 3 naboer dreper cellen
-			settDoed();
-		}
-		if (antLevendeNaboer == 3) {	// reproduksjon av cellen hvis
-			settLevende(); 		// antall naboer er 3
-		}
-		else {				// cellen dør hvis ingen av kravene over 
-			settDoed();		// oppfylles
+		else {
+			if (antLevendeNaboer == 3) {	// reproduksjon av cellen hvis
+				settLevende(); 		// antall naboer er 3
+			}
 		}
 	}
 }
